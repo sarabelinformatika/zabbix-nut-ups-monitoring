@@ -1,7 +1,7 @@
 # Zabbix NUT UPS Monitoring
 
 <p align="center">
-  <img src="images/banner.png" alt="Zabbix NUT UPS Monitoring">
+  <img src="images/zabbix-nut-ups-monitoring.jpg" alt="Zabbix NUT UPS Monitoring">
 </p>
 
 <p align="center">
