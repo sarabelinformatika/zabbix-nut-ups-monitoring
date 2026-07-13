@@ -1,1 +1,13 @@
+##############################################################################
+# Example Users
+##############################################################################
 
+[admin]
+password = ChangeThisPassword
+actions = SET
+actions = FSD
+instcmds = ALL
+
+[zabbix]
+password = ChangeThisPassword
+upsmon primary
