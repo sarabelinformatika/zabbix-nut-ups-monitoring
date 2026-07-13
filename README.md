@@ -8,11 +8,28 @@
 
 ![Platform](https://img.shields.io/badge/Platform-Linux-blue)
 ![Proxmox](https://img.shields.io/badge/Proxmox-Compatible-E57000)
-![Zabbix](https://img.shields.io/badge/Zabbix-7.x-D40000)
+![Zabbix](https://img.shields.io/badge/Zabbix-6.x%20%7C%207.x-D40000)
 ![NUT](https://img.shields.io/badge/NUT-Network%20UPS%20Tools-success)
 ![USB HID](https://img.shields.io/badge/USB-HID-informational)
-![License](https://img.shields.io/badge/License-MIT-green)
 
+![GitHub release](https://img.shields.io/github/v/release/sarabelinformatika/zabbix-nut-ups-monitoring)
+![GitHub stars](https://img.shields.io/github/stars/sarabelinformatika/zabbix-nut-ups-monitoring?style=social)
+![GitHub forks](https://img.shields.io/github/forks/sarabelinformatika/zabbix-nut-ups-monitoring?style=social)
+
+![GitHub issues](https://img.shields.io/github/issues/sarabelinformatika/zabbix-nut-ups-monitoring)
+![GitHub last commit](https://img.shields.io/github/last-commit/sarabelinformatika/zabbix-nut-ups-monitoring)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/sarabelinformatika/zabbix-nut-ups-monitoring)
+
+![License](https://img.shields.io/github/license/sarabelinformatika/zabbix-nut-ups-monitoring)
+
+</p>
+
+---
+
+<p align="center">
+Enterprise-grade monitoring solution for USB-connected UPS devices using
+<strong>Network UPS Tools (NUT)</strong>, <strong>Zabbix</strong>, and
+<strong>Proxmox VE</strong>.
 </p>
 
 ---
