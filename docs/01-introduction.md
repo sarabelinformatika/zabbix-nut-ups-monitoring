@@ -165,6 +165,4 @@ Whether you operate a single server or an entire virtualization platform, this d
 
 ---
 
-Continue with:
-
-**02-architecture.md**
+**Next:** [Architecture →](02-architecture.md)
