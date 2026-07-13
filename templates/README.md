@@ -120,3 +120,27 @@ No template modifications are required.
 ---
 
 For detailed installation instructions, see the documentation in the **docs/** directory.
+
+# Zabbix NUT UPS Template
+
+Files:
+
+- `zabbix_export.yaml` — canonical Zabbix 7.0 template export.
+- `zabbix_export.xml` — XML representation of the same template.
+
+The template requires:
+
+- `ups.discovery`
+- `ups.status[*]`
+- `ups.charge[*]`
+- `ups.runtime[*]`
+- `ups.load[*]`
+- `ups.input[*]`
+- `ups.output[*]`
+- `ups.battery[*]`
+- `ups.temperature[*]`
+- `ups.model[*]`
+- `ups.manufacturer[*]`
+- `ups.driver[*]`
+
+Import into a test Zabbix 7.0 instance first. The YAML file is the recommended canonical source because it is easier to review and maintain.
