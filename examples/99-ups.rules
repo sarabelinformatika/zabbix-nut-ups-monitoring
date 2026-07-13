@@ -1,0 +1,57 @@
+###############################################################################
+# 99-ups.rules
+#
+# Persistent USB device mapping for Network UPS Tools (NUT)
+#
+# This file creates stable symbolic links for USB-connected UPS devices.
+# It is recommended for environments with multiple identical UPS units where
+# "port = auto" may result in incorrect device assignments after reboot.
+#
+# Location:
+# /etc/udev/rules.d/99-ups.rules
+#
+# Reload rules:
+# sudo udevadm control --reload-rules
+# sudo udevadm trigger
+#
+# Verify:
+# ls -l /dev/ups*
+#
+###############################################################################
+
+#
+# UPS #1 - Network Infrastructure
+#
+SUBSYSTEM=="usb", ATTR{idVendor}=="XXXX", ATTR{idProduct}=="YYYY", \
+SYMLINK+="ups_network"
+
+#
+# UPS #2 - Server Infrastructure
+#
+SUBSYSTEM=="usb", ATTR{idVendor}=="XXXX", ATTR{idProduct}=="YYYY", \
+SYMLINK+="ups_servers"
+
+#
+# UPS #3 - Office Workstations
+#
+SUBSYSTEM=="usb", ATTR{idVendor}=="XXXX", ATTR{idProduct}=="YYYY", \
+SYMLINK+="ups_workstations"
+
+###############################################################################
+# Replace:
+#
+# XXXX -> USB Vendor ID
+# YYYY -> USB Product ID
+#
+# Discover your device IDs using:
+#
+# lsusb
+#
+# Example:
+#
+# Bus 001 Device 003: ID 0665:5161 Eaton Corporation UPS
+#
+# Vendor ID  = 0665
+# Product ID = 5161
+#
+###############################################################################
