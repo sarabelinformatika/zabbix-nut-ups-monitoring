@@ -1,25 +1,26 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-echo "========================================"
-echo "USB UPS Discovery"
-echo "========================================"
+###############################################################################
+# Zabbix Low Level Discovery
+# Network UPS Tools
+###############################################################################
 
-echo
-echo "Detected USB devices:"
-echo
+echo '{"data":['
 
-lsusb
+FIRST=true
 
-echo
+while read UPS
+do
+    [ -z "$UPS" ] && continue
 
-echo "Running NUT Scanner..."
-echo
+    if [ "$FIRST" = true ]; then
+        FIRST=false
+    else
+        echo ","
+    fi
 
-nut-scanner
+    printf '{"{#UPS}":"%s"}' "$UPS"
 
-echo
+done < <(upsc -l)
 
-echo "Configured UPS devices:"
-echo
-
-upsc -l
+echo "]}"
