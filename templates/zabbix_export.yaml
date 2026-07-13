@@ -1,0 +1,330 @@
+zabbix_export:
+  version: '7.0'
+  template_groups:
+  - uuid: 573b7e3790e44d3cada5087e18399dfc
+    name: Templates/Power
+  templates:
+  - uuid: e1fb80380a1746d88600ab77d4e2f8f6
+    template: Template NUT UPS by Zabbix agent
+    name: Template NUT UPS by Zabbix agent
+    description: Monitors one or more USB-connected UPS devices through Network UPS Tools (NUT) and Zabbix Agent flexible
+      UserParameters. Requires the supplied ups.discovery key and ups.*[*] UserParameters on the monitored Linux or Proxmox
+      host.
+    groups:
+    - name: Templates/Power
+    discovery_rules:
+    - uuid: e3fcca242e8f4935b1036fb2a22a1b36
+      name: NUT UPS discovery
+      key: ups.discovery
+      delay: 1h
+      lifetime: 7d
+      description: Discovers UPS identifiers returned by `upsc -l`.
+      item_prototypes:
+      - uuid: 757e55256a2a464c93d95d93f6975683
+        name: '{#UPS}: UPS status'
+        key: ups.status[{#UPS}]
+        delay: 30s
+        history: 7d
+        trends: '0'
+        value_type: CHAR
+        description: 'NUT metric collected for discovered UPS {#UPS}: UPS status.'
+        tags:
+        - tag: component
+          value: ups
+        - tag: ups
+          value: '{#UPS}'
+        preprocessing:
+        - type: DISCARD_UNCHANGED_HEARTBEAT
+          parameters:
+          - 1h
+      - uuid: 620db4e846f2440e8d0d2baa9f8beee6
+        name: '{#UPS}: Battery charge'
+        key: ups.charge[{#UPS}]
+        delay: 1m
+        history: 7d
+        trends: 90d
+        value_type: UNSIGNED
+        description: 'NUT metric collected for discovered UPS {#UPS}: Battery charge.'
+        tags:
+        - tag: component
+          value: ups
+        - tag: ups
+          value: '{#UPS}'
+        units: '%'
+      - uuid: 68f70d0c735c4d0b880d34825b88b6e9
+        name: '{#UPS}: Battery runtime'
+        key: ups.runtime[{#UPS}]
+        delay: 1m
+        history: 7d
+        trends: 90d
+        value_type: UNSIGNED
+        description: 'NUT metric collected for discovered UPS {#UPS}: Battery runtime.'
+        tags:
+        - tag: component
+          value: ups
+        - tag: ups
+          value: '{#UPS}'
+        units: s
+      - uuid: a3ae7e70936542c39e75f3d6b4181989
+        name: '{#UPS}: UPS load'
+        key: ups.load[{#UPS}]
+        delay: 1m
+        history: 7d
+        trends: 90d
+        value_type: FLOAT
+        description: 'NUT metric collected for discovered UPS {#UPS}: UPS load.'
+        tags:
+        - tag: component
+          value: ups
+        - tag: ups
+          value: '{#UPS}'
+        units: '%'
+      - uuid: 2fa7b7d3ba4f43049f5c3248070fbb76
+        name: '{#UPS}: Input voltage'
+        key: ups.input[{#UPS}]
+        delay: 1m
+        history: 7d
+        trends: 90d
+        value_type: FLOAT
+        description: 'NUT metric collected for discovered UPS {#UPS}: Input voltage.'
+        tags:
+        - tag: component
+          value: ups
+        - tag: ups
+          value: '{#UPS}'
+        units: V
+      - uuid: 248d415e20f74189ae3bc0c26be4ddd9
+        name: '{#UPS}: Output voltage'
+        key: ups.output[{#UPS}]
+        delay: 1m
+        history: 7d
+        trends: 90d
+        value_type: FLOAT
+        description: 'NUT metric collected for discovered UPS {#UPS}: Output voltage.'
+        tags:
+        - tag: component
+          value: ups
+        - tag: ups
+          value: '{#UPS}'
+        units: V
+      - uuid: eb5bd62ae0254bf2b246097b5ce40229
+        name: '{#UPS}: Battery voltage'
+        key: ups.battery[{#UPS}]
+        delay: 5m
+        history: 7d
+        trends: 90d
+        value_type: FLOAT
+        description: 'NUT metric collected for discovered UPS {#UPS}: Battery voltage.'
+        tags:
+        - tag: component
+          value: ups
+        - tag: ups
+          value: '{#UPS}'
+        units: V
+      - uuid: a1cb1dcc2fd14c0d8a9d5eca726400c1
+        name: '{#UPS}: UPS temperature'
+        key: ups.temperature[{#UPS}]
+        delay: 5m
+        history: 7d
+        trends: 90d
+        value_type: FLOAT
+        description: 'NUT metric collected for discovered UPS {#UPS}: UPS temperature.'
+        tags:
+        - tag: component
+          value: ups
+        - tag: ups
+          value: '{#UPS}'
+        units: °C
+      - uuid: 22ddf33dc8e14f05a2012db6364a72f7
+        name: '{#UPS}: UPS model'
+        key: ups.model[{#UPS}]
+        delay: 1h
+        history: 7d
+        trends: '0'
+        value_type: CHAR
+        description: 'NUT metric collected for discovered UPS {#UPS}: UPS model.'
+        tags:
+        - tag: component
+          value: ups
+        - tag: ups
+          value: '{#UPS}'
+        preprocessing:
+        - type: DISCARD_UNCHANGED_HEARTBEAT
+          parameters:
+          - 1h
+      - uuid: 137f8488705f48a8b1df3135888faf34
+        name: '{#UPS}: UPS manufacturer'
+        key: ups.manufacturer[{#UPS}]
+        delay: 1h
+        history: 7d
+        trends: '0'
+        value_type: CHAR
+        description: 'NUT metric collected for discovered UPS {#UPS}: UPS manufacturer.'
+        tags:
+        - tag: component
+          value: ups
+        - tag: ups
+          value: '{#UPS}'
+        preprocessing:
+        - type: DISCARD_UNCHANGED_HEARTBEAT
+          parameters:
+          - 1h
+      - uuid: 83e1529dcf5849ff9145cc8071ed5b93
+        name: '{#UPS}: NUT driver'
+        key: ups.driver[{#UPS}]
+        delay: 1h
+        history: 7d
+        trends: '0'
+        value_type: CHAR
+        description: 'NUT metric collected for discovered UPS {#UPS}: NUT driver.'
+        tags:
+        - tag: component
+          value: ups
+        - tag: ups
+          value: '{#UPS}'
+        preprocessing:
+        - type: DISCARD_UNCHANGED_HEARTBEAT
+          parameters:
+          - 1h
+      trigger_prototypes:
+      - uuid: 3c041e4767594ce4be364b4b93a6aa9e
+        expression: find(/Template NUT UPS by Zabbix agent/ups.status[{#UPS}],,"like","OB")=1
+        name: '{#UPS}: UPS is running on battery'
+        priority: AVERAGE
+        description: The UPS reports On Battery (OB). Check utility power and remaining runtime.
+        tags:
+        - tag: scope
+          value: availability
+        - tag: ups
+          value: '{#UPS}'
+      - uuid: 135d3799fb4a4af2b1356a8fc042e748
+        expression: last(/Template NUT UPS by Zabbix agent/ups.charge[{#UPS}])<{$UPS.BATTERY.LOW}
+        name: '{#UPS}: Battery charge is low'
+        priority: HIGH
+        description: Battery charge is below the configured threshold.
+        tags:
+        - tag: scope
+          value: capacity
+        - tag: ups
+          value: '{#UPS}'
+      - uuid: f0d584aa16384cccb942de5c61287c76
+        expression: last(/Template NUT UPS by Zabbix agent/ups.runtime[{#UPS}])>0 and last(/Template NUT UPS by Zabbix agent/ups.runtime[{#UPS}])<{$UPS.RUNTIME.MIN}
+        name: '{#UPS}: Remaining runtime is critical'
+        priority: HIGH
+        description: Estimated battery runtime is below the configured safety threshold.
+        tags:
+        - tag: scope
+          value: capacity
+        - tag: ups
+          value: '{#UPS}'
+      - uuid: 1aaaf94111d64b0b8a47d0df03604aeb
+        expression: last(/Template NUT UPS by Zabbix agent/ups.load[{#UPS}])>{$UPS.LOAD.MAX}
+        name: '{#UPS}: UPS load is high'
+        priority: WARNING
+        description: UPS output load exceeds the recommended threshold.
+        tags:
+        - tag: scope
+          value: performance
+        - tag: ups
+          value: '{#UPS}'
+      - uuid: 32da193ac30c4b58b24a09744fd3627c
+        expression: find(/Template NUT UPS by Zabbix agent/ups.status[{#UPS}],,"like","RB")=1
+        name: '{#UPS}: UPS requests battery replacement'
+        priority: AVERAGE
+        description: The UPS reports Replace Battery (RB).
+        tags:
+        - tag: scope
+          value: notice
+        - tag: ups
+          value: '{#UPS}'
+      - uuid: 7add1b91edd64aada076705afdb3a639
+        expression: nodata(/Template NUT UPS by Zabbix agent/ups.status[{#UPS}],{$UPS.NODATA})=1
+        name: '{#UPS}: NUT communication lost'
+        priority: HIGH
+        description: No UPS status data has been received within the configured period.
+        tags:
+        - tag: scope
+          value: availability
+        - tag: ups
+          value: '{#UPS}'
+      - uuid: 18c84e309d474e35a5e03f308107c83b
+        expression: (last(/Template NUT UPS by Zabbix agent/ups.input[{#UPS}])>0 and last(/Template NUT UPS by Zabbix agent/ups.input[{#UPS}])<{$UPS.INPUT.MIN})
+          or last(/Template NUT UPS by Zabbix agent/ups.input[{#UPS}])>{$UPS.INPUT.MAX}
+        name: '{#UPS}: Input voltage is outside the recommended range'
+        priority: WARNING
+        description: UPS input voltage is outside the configured operating range.
+        tags:
+        - tag: scope
+          value: performance
+        - tag: ups
+          value: '{#UPS}'
+      - uuid: e597df541ab44461abe536f147d030d0
+        expression: last(/Template NUT UPS by Zabbix agent/ups.temperature[{#UPS}])>{$UPS.TEMP.MAX}
+        name: '{#UPS}: UPS temperature is high'
+        priority: WARNING
+        description: UPS-reported temperature exceeds the configured threshold. Available only when supported by the device.
+        tags:
+        - tag: scope
+          value: performance
+        - tag: ups
+          value: '{#UPS}'
+      graph_prototypes:
+      - uuid: 9842df79a16c4928a4479e7fc9a941c0
+        name: '{#UPS}: Battery status'
+        graph_items:
+        - color: 199C0D
+          item:
+            host: Template NUT UPS by Zabbix agent
+            key: ups.charge[{#UPS}]
+        - sortorder: '1'
+          color: F63100
+          yaxisside: RIGHT
+          item:
+            host: Template NUT UPS by Zabbix agent
+            key: ups.runtime[{#UPS}]
+      - uuid: efe676d0eb7546c6a480330d4bf80d11
+        name: '{#UPS}: Power and load'
+        graph_items:
+        - color: 2774A4
+          item:
+            host: Template NUT UPS by Zabbix agent
+            key: ups.load[{#UPS}]
+        - sortorder: '1'
+          color: A54F10
+          yaxisside: RIGHT
+          item:
+            host: Template NUT UPS by Zabbix agent
+            key: ups.input[{#UPS}]
+        - sortorder: '2'
+          color: 6C59DC
+          yaxisside: RIGHT
+          item:
+            host: Template NUT UPS by Zabbix agent
+            key: ups.output[{#UPS}]
+    tags:
+    - tag: class
+      value: power
+    - tag: target
+      value: ups
+    macros:
+    - macro: '{$UPS.BATTERY.LOW}'
+      value: '20'
+      description: Low battery charge threshold in percent.
+    - macro: '{$UPS.RUNTIME.MIN}'
+      value: '300'
+      description: Critical remaining runtime threshold in seconds.
+    - macro: '{$UPS.LOAD.MAX}'
+      value: '80'
+      description: Maximum recommended UPS load in percent.
+    - macro: '{$UPS.INPUT.MIN}'
+      value: '200'
+      description: Minimum acceptable input voltage.
+    - macro: '{$UPS.INPUT.MAX}'
+      value: '250'
+      description: Maximum acceptable input voltage.
+    - macro: '{$UPS.TEMP.MAX}'
+      value: '40'
+      description: Maximum acceptable UPS temperature in degrees Celsius.
+    - macro: '{$UPS.NODATA}'
+      value: 5m
+      description: No-data interval used for communication-loss detection.
